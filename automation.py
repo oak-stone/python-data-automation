@@ -1,4 +1,4 @@
-
+gi
 #------------------------------------------------
 # BUILT FOR PYTHON 3.x
 #------------------------------------------------
@@ -47,7 +47,7 @@ def progressBar(current, total, full_progbar_length):
 #defining fuction to download the appropriate file(s)
 def download_file(file):
     print("\nDownloading  %s" %file, end = " | ")
-    with open(os.getcwd() + "/files/" + file, 'wb') as file_handle: #using while to automatically close the file as well, even if the write failes
+    with open(os.getcwd() + "/files/" + file, 'wb') as file_handle: #using while to automatically close the file as well, even when write fails
         ftps.retrbinary("RETR %s" %file, file_handle.write)
     print("\033[0;32;40m finished\033[0;37;40m")
 
@@ -74,7 +74,7 @@ def find_files(ftps, dirpath):
                     #download_file(file)
                 else:
                     continue
-            if(file.endswith(csv.extension)):
+            elif(file.endswith(csv.extension)):
                 if (csv.search == True):
                     filesFound.append(file)
                     #print("\n Found: " + file)
@@ -122,7 +122,7 @@ def write_to_database(engine):
                       else:
                           continue
                 print("\nAdding %s to database" %file, end = " | ")
-                #df.to_sql('sla', engine, if_exists="append")
+                #df.to_sql('table1', engine, if_exists="append")
                 print(" success")
                 print("Removing %s from current directory" %file, end = " | ")
                 os.remove(file)
@@ -139,7 +139,7 @@ def write_to_database(engine):
                       else:
                           continue
                 print("\nAdding %s to database" %file, end = " | ")
-                #df.to_sql('inc', engine, if_exists="append")
+                #df.to_sql('table2', engine, if_exists="append")
                 print("\033[0;32;40m success\033[0;37;40")
                 print("Removing %s from current directory" %file, end = " | ")
                 os.remove(file)
